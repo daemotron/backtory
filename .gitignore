@@ -1,0 +1,8 @@
+*.so
+*.[oa]
+*.py[co]
+*.kdev4
+*.idea
+*.txt.user
+*~
+build/
