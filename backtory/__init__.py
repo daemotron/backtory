@@ -16,12 +16,12 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
-
 __version_major__ = 0
 __version_minor__ = 1
 __version_patch__ = 0
 __version_stage__ = 'CURRENT'
 __version_suffx__ = 0
+
 
 __version_flavs__ = {
     'CURRENT'  :('-', 'CURRENT'),
@@ -34,3 +34,4 @@ __version_flavs__ = {
 
 
 __version__ =  __version_flavs__[__version_stage__][0].join(('.'.join(map(str,(__version_major__, __version_minor__))), __version_flavs__[__version_stage__][1]))
+__version_info__ = (__version_major__, __version_minor__, __version_patch__, __version_stage__, __version_suffx__)

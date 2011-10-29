@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #-
@@ -17,8 +16,16 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
-import backtory.cli
+import os
 
+__etc_dir__ = '/etc/backtory'
+if os.uname()[0] == 'FreeBSD':
+    __etc_dir__ = os.path.join('/usr/local', __etc_dir__)
 
-if __name__ == '__main__':
-    backtory.cli.main()
+conf = {
+    'os': os.uname()[0],
+    'version': os.uname()[2],
+    'etcdir': __etc_dir__,
+    'conffile': os.path.join(__etc_dir__, 'backtory.conf'),
+    'logfile': '/var/log/backtory.log'
+}
