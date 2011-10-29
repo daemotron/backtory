@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #-
@@ -17,8 +16,27 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
-import backtory.daemon
+import backtory.defaults
 
 
-if __name__ == '__main__':
-    backtory.daemon.run()
+class Daemon(object):
+
+    def __init__(self, args):
+        self._conffile = args.conffile
+        self._logfile = backtory.defaults.conf['logfile']
+        self._as_daemon = not args.no_daemon
+
+    def _load_config(self):
+        pass
+
+    def _daemonize(self):
+        pass
+
+    def _log_init(self):
+        pass
+
+    def run(self):
+        self._load_config()
+        self._log_init()
+        if self._as_daemon:
+            self._daemonize()

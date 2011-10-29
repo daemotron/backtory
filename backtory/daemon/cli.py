@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #-
@@ -17,8 +16,18 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
+import argparse
+
+import backtory
+import backtory.defaults
 import backtory.daemon
 
 
-if __name__ == '__main__':
-    backtory.daemon.run()
+def main():
+    parser = argparse.ArgumentParser(description='The Backtory daemon')
+    parser.add_argument('-c', '--conf', dest='conffile', metavar='file', action='store', default=backtory.defaults.conf['conffile'], help='use configuration from indicated file')
+    parser.add_argument('-D', '--no-daemon', action='store_true', help='do not daemonize')
+    parser.add_argument('-v', '--version', action='version', version=' '.join(('%(prog)s', backtory.__version__)))
+    args = parser.parse_args()
+    backtoryd = backtory.daemon.new(args)
+    backtoryd.run()

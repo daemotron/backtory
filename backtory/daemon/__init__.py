@@ -16,17 +16,13 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
-import argparse
-
-import backtory
-import backtory.defaults
+import backtory.daemon.base
+import backtory.daemon.cli
 
 
-def main():
-    parser = argparse.ArgumentParser(description='The Backtory daemon')
-    parser.add_argument('-c', '--conf', dest='conffile', metavar='file', action='store', default=backtory.defaults.conf['conffile'], help='use configuration from indicated file')
-    parser.add_argument('-l', '--log', dest='logfile', metavar='file', action='store', default=backtory.defaults.conf['logfile'], help='write log to indicated file')
-    parser.add_argument('-D', '--no-daemon', action='store_true', help='do not daemonize')
-    parser.add_argument('-v', '--version', action='version', version=' '.join(('%(prog)s', backtory.__version__)))
-    args = parser.parse_args()
-    
+def new(args):
+    return backtory.daemon.base.Daemon(args)
+
+
+def run():
+    backtory.daemon.cli.main()
